@@ -21,3 +21,14 @@ class Extractor:
                 record_types.add(record_type)
 
         return list(record_types)
+
+    def record_values(self, record_type: str) -> list["str"]:
+        values = []
+
+        for record in self.health_data.get(RECORD_ELEMENT, []):
+            if record.get(RECORD_ELEMENT_TYPE) == record_type:
+                value = record.get("@value")
+                if value:
+                    values.append(value)
+
+        return values
