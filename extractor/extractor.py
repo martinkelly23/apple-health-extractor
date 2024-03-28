@@ -1,7 +1,8 @@
 import xmltodict
 
 from extractor.constants.metadata import HEALTH_DATA_ELEMENT, RECORD_ELEMENT, RECORD_ELEMENT_TYPE, RECORD_ELEMENT_VALUE, \
-    RECORD_ELEMENT_START_DATE, RECORD_ELEMENT_END_DATE, RECORD_ELEMENT_CREATION_DATE
+    RECORD_ELEMENT_START_DATE, RECORD_ELEMENT_END_DATE, RECORD_ELEMENT_CREATION_DATE, RECORD_ELEMENT_SOURCE_NAME, \
+    RECORD_ELEMENT_UNIT
 
 
 class Extractor:
@@ -33,8 +34,8 @@ class Extractor:
                     "start_date": record.get(RECORD_ELEMENT_START_DATE),
                     "end_date": record.get(RECORD_ELEMENT_END_DATE),
                     "creation_date": record.get(RECORD_ELEMENT_CREATION_DATE),
-                    "source_name": record.get("@sourceName"),
-                    "unit": record.get("@unit"),
+                    "source_name": record.get(RECORD_ELEMENT_SOURCE_NAME),
+                    "unit": record.get(RECORD_ELEMENT_UNIT),
                 })
 
         return values
