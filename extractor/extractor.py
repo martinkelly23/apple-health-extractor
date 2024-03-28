@@ -1,6 +1,6 @@
 import xmltodict
 
-from extractor.constants.metadata import HEALTH_DATA_ELEMENT, RECORD_ELEMENT, RECORD_ELEMENT_TYPE
+from extractor.constants.metadata import HEALTH_DATA_ELEMENT, RECORD_ELEMENT, RECORD_ELEMENT_TYPE, RECORD_ELEMENT_VALUE
 
 
 class Extractor:
@@ -22,12 +22,12 @@ class Extractor:
 
         return list(record_types)
 
-    def record_values(self, record_type: str) -> list["str"]:
+    def record_values(self, record_type: str) -> list[str]:
         values = []
 
         for record in self.health_data.get(RECORD_ELEMENT, []):
             if record.get(RECORD_ELEMENT_TYPE) == record_type:
-                value = record.get("@value")
+                value = record.get(RECORD_ELEMENT_VALUE)
                 if value:
                     values.append(value)
 
