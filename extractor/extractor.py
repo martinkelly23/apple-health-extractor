@@ -1,10 +1,10 @@
 from dataclasses import asdict
-from typing import Any
+from typing import Any, List, Dict
 
 import xmltodict
 
-from extractor.constants.metadata import HEALTH_DATA_ELEMENT, RECORD_ELEMENT, RECORD_ATTRIBUTES
-from extractor.record import Record
+from extractor.constants.metadata import HEALTH_DATA_ELEMENT
+from extractor.record import Record, RECORD_ELEMENT, TYPE
 
 
 class Extractor:
@@ -18,19 +18,18 @@ class Extractor:
     def get_record_types(self) -> list[str]:
         record_types = set()
 
-        for record in self.health_data.get(RECORD_ELEMENT, []):
-            record_type = record.get(RECORD_ATTRIBUTES["type"])
-
-            if record_type:
-                record_types.add(record_type)
+        for record_data in self.health_data.get(RECORD_ELEMENT, []):
+            record = Record(**record_data)
+            record_types.add(record.type)
 
         return list(record_types)
 
-    def get_records(self, record_type: str) -> list[dict[str, Any]]:
-        values = []
+    def get_records(self, record_type: str) -> List[Dict[str, Any]]:
+        records = []
 
-        for record in self.health_data.get(RECORD_ELEMENT, []):
-            if record.get(RECORD_ATTRIBUTES["type"]) == record_type:
-                values.append(asdict(Record(**record)))
+        for record_data in self.health_data.get(RECORD_ELEMENT, []):
+            record = Record(**record_data)
+            if record.type == record_type:
+                records.append(asdict(record))
 
-        return values
+        return records

@@ -1,5 +1,13 @@
-from extractor.constants.metadata import RECORD_ATTRIBUTES
 from dataclasses import dataclass
+
+RECORD_ELEMENT = "Record"
+TYPE = '@type'
+VALUE = '@value'
+START_DATE = '@startDate'
+END_DATE = '@endDate'
+CREATION_DATE = '@creationDate'
+SOURCE_NAME = '@sourceName'
+UNIT = '@unit'
 
 
 @dataclass
@@ -13,10 +21,10 @@ class Record:
     unit: str = None
 
     def __init__(self, **data):
-        self.type = data.get(RECORD_ATTRIBUTES["type"])
-        self.start_date = data.get(RECORD_ATTRIBUTES["start_date"])
-        self.end_date = data.get(RECORD_ATTRIBUTES["end_date"])
-        self.creation_date = data.get(RECORD_ATTRIBUTES["creation_date"])
-        self.source_name = data.get(RECORD_ATTRIBUTES["source_name"])
-        self.unit = data.get(RECORD_ATTRIBUTES["unit"])
-        self.value = data.get(RECORD_ATTRIBUTES["value"])
+        self.type = data.get(TYPE)
+        self.start_date = data.get(START_DATE)
+        self.end_date = data.get(END_DATE)
+        self.creation_date = data.get(CREATION_DATE)
+        self.source_name = data.get(SOURCE_NAME)
+        self.unit = data.get(UNIT)
+        self.value = data.get(VALUE)
