@@ -21,6 +21,7 @@ class TestExtractor:
 
         assert extractor.get_records("HKQuantityTypeIdentifierStepCount") == [
             {
+                "type": "HKQuantityTypeIdentifierStepCount",
                 "value": "1500",
                 "start_date": "2022-03-25 00:00:00 +0000",
                 "end_date": "2022-03-25 00:00:00 +0000",
@@ -28,6 +29,7 @@ class TestExtractor:
                 "source_name": "iPhone",
                 "unit": "count",
             }, {
+                "type": "HKQuantityTypeIdentifierStepCount",
                 "value": "2500",
                 "start_date": "2022-03-25 12:00:00 +0000",
                 "end_date": "2022-03-25 12:00:00 +0000",
