@@ -22,13 +22,16 @@ class Extractor:
 
         return list(record_types)
 
-    def get_record_values(self, record_type: str) -> list[str]:
+    def get_records(self, record_type: str) -> list[dict]:
         values = []
 
         for record in self.health_data.get(RECORD_ELEMENT, []):
             if record.get(RECORD_ELEMENT_TYPE) == record_type:
-                value = record.get(RECORD_ELEMENT_VALUE)
-                if value:
-                    values.append(value)
+                values.append({
+                    "value": record.get(RECORD_ELEMENT_VALUE),
+                    "start_date": record.get("@startDate"),
+                    "end_date": record.get("@endDate"),
+                    "creation_date": record.get("@creationDate"),
+                })
 
         return values
