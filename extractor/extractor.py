@@ -11,7 +11,7 @@ class Extractor:
             xml = xmltodict.parse(file.read())
             self.health_data = xml[HEALTH_DATA_ELEMENT]
 
-    def record_types(self) -> list[str]:
+    def get_record_types(self) -> list[str]:
         record_types = set()
 
         for record in self.health_data.get(RECORD_ELEMENT, []):
@@ -22,7 +22,7 @@ class Extractor:
 
         return list(record_types)
 
-    def record_values(self, record_type: str) -> list[str]:
+    def get_record_values(self, record_type: str) -> list[str]:
         values = []
 
         for record in self.health_data.get(RECORD_ELEMENT, []):

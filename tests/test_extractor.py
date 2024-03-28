@@ -10,7 +10,7 @@ class TestExtractor:
 
         extractor = Extractor(file_src=health_file_path)
 
-        assert set(extractor.record_types()) == {'HKQuantityTypeIdentifierStepCount',
+        assert set(extractor.get_record_types()) == {'HKQuantityTypeIdentifierStepCount',
                                                  'HKQuantityTypeIdentifierHeartRate'}
 
     def test_get_values_when_given_record_type(self):
@@ -19,4 +19,4 @@ class TestExtractor:
 
         extractor = Extractor(file_src=health_file_path)
 
-        assert extractor.record_values("HKQuantityTypeIdentifierStepCount") == ["1500", "2500"]
+        assert extractor.get_record_values("HKQuantityTypeIdentifierStepCount") == ["1500", "2500"]
