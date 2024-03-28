@@ -33,6 +33,8 @@ class Extractor:
                     "start_date": record.get(RECORD_ELEMENT_START_DATE),
                     "end_date": record.get(RECORD_ELEMENT_END_DATE),
                     "creation_date": record.get(RECORD_ELEMENT_CREATION_DATE),
+                    "source_name": record.get("@sourceName"),
+                    "unit": record.get("@unit"),
                 })
 
         return values
