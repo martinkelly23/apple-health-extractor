@@ -1,0 +1,3 @@
+HEALTH_DATA_ELEMENT = "HealthData"
+RECORD_ELEMENT = "Record"
+RECORD_ELEMENT_TYPE = "@type"
