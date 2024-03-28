@@ -1,6 +1,7 @@
 import xmltodict
 
-from extractor.constants.metadata import HEALTH_DATA_ELEMENT, RECORD_ELEMENT, RECORD_ELEMENT_TYPE, RECORD_ELEMENT_VALUE
+from extractor.constants.metadata import HEALTH_DATA_ELEMENT, RECORD_ELEMENT, RECORD_ELEMENT_TYPE, RECORD_ELEMENT_VALUE, \
+    RECORD_ELEMENT_START_DATE, RECORD_ELEMENT_END_DATE, RECORD_ELEMENT_CREATION_DATE
 
 
 class Extractor:
@@ -29,9 +30,9 @@ class Extractor:
             if record.get(RECORD_ELEMENT_TYPE) == record_type:
                 values.append({
                     "value": record.get(RECORD_ELEMENT_VALUE),
-                    "start_date": record.get("@startDate"),
-                    "end_date": record.get("@endDate"),
-                    "creation_date": record.get("@creationDate"),
+                    "start_date": record.get(RECORD_ELEMENT_START_DATE),
+                    "end_date": record.get(RECORD_ELEMENT_END_DATE),
+                    "creation_date": record.get(RECORD_ELEMENT_CREATION_DATE),
                 })
 
         return values
