@@ -4,7 +4,7 @@ from typing import Any, List, Dict
 import xmltodict
 
 from extractor.constants.metadata import HEALTH_DATA_ELEMENT
-from extractor.record import Record, RECORD_ELEMENT, TYPE
+from extractor.record import Record, RECORD_ELEMENT
 
 
 class Extractor:
@@ -14,6 +14,9 @@ class Extractor:
         with open(self.file_src) as file:
             xml = xmltodict.parse(file.read())
             self.health_data = xml[HEALTH_DATA_ELEMENT]
+
+    def get_json(self):
+        return self.health_data
 
     def get_record_types(self) -> list[str]:
         record_types = set()
