@@ -7,6 +7,9 @@ import xmltodict
 from extractor.constants.metadata import HEALTH_DATA_ELEMENT
 from extractor.record import Record, RECORD_ELEMENT
 
+FILE_NAME_INDEX = -1
+DIRECTORY_SEPARATOR = "/"
+
 
 class Extractor:
     def __init__(self, file_src: str):
@@ -20,7 +23,9 @@ class Extractor:
         return self.health_data
 
     def save_to_csv(self):
-        csv_output_file = self.file_src.split("/")[-1].replace("xml", "csv")
+        csv_output_file = self.file_src.split(DIRECTORY_SEPARATOR)[
+            FILE_NAME_INDEX
+        ].replace("xml", "csv")
         with open(csv_output_file, "w", newline="") as csvfile:
             csv_writer = csv.writer(csvfile)
 
