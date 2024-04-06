@@ -1,13 +1,13 @@
 from dataclasses import dataclass
 
 RECORD_ELEMENT = "Record"
-TYPE = '@type'
-VALUE = '@value'
-START_DATE = '@startDate'
-END_DATE = '@endDate'
-CREATION_DATE = '@creationDate'
-SOURCE_NAME = '@sourceName'
-UNIT = '@unit'
+TYPE = "@type"
+VALUE = "@value"
+START_DATE = "@startDate"
+END_DATE = "@endDate"
+CREATION_DATE = "@creationDate"
+SOURCE_NAME = "@sourceName"
+UNIT = "@unit"
 
 
 @dataclass
