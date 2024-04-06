@@ -44,6 +44,16 @@ class TestExtractor:
                 }
             ]}
 
+    def test_save_to_csv(self):
+        test_dir = os.path.dirname(__file__)
+        health_file_path = os.path.join(test_dir, "resources", "health_data.xml")
+
+        extractor = Extractor(file_src=health_file_path)
+
+        extractor.save_to_csv()
+
+        assert os.path.exists("health_data.csv")
+
     def test_extract_record_types(self):
         test_dir = os.path.dirname(__file__)
         health_file_path = os.path.join(test_dir, "resources", "health_data.xml")
