@@ -24,6 +24,19 @@ class Extractor:
         with open(csv_output_file, "w", newline="") as csvfile:
             csv_writer = csv.writer(csvfile)
 
+            headers = []
+            for record in self.health_data.get(RECORD_ELEMENT, []):
+                for key in record.keys():
+                    if key not in headers:
+                        headers.append(key)
+            csv_writer.writerow(headers)
+
+            for record in self.health_data.get(RECORD_ELEMENT, []):
+                row = []
+                for header in headers:
+                    row.append(record.get(header, ""))
+                csv_writer.writerow(row)
+
     def get_record_types(self) -> list[str]:
         record_types = set()
 
