@@ -53,7 +53,7 @@ class TestExtractor:
         extractor.save_to_csv()
 
         assert os.path.exists("health_data.csv")
-
+        os.remove("health_data.csv")
     def test_extract_record_types(self):
         test_dir = os.path.dirname(__file__)
         health_file_path = os.path.join(test_dir, "resources", "health_data.xml")
