@@ -1,3 +1,4 @@
+import csv
 from dataclasses import asdict
 from typing import Any, List, Dict
 
@@ -5,7 +6,6 @@ import xmltodict
 
 from extractor.constants.metadata import HEALTH_DATA_ELEMENT
 from extractor.record import Record, RECORD_ELEMENT
-
 
 class Extractor:
     def __init__(self, file_src: str):
@@ -17,6 +17,11 @@ class Extractor:
 
     def get_json(self):
         return self.health_data
+
+    def save_to_csv(self):
+        csv_output_file = self.file_src.split("/")[-1].replace("xml", "csv")
+        with open(csv_output_file, 'w', newline='') as csvfile:
+            csv_writer = csv.writer(csvfile)
 
     def get_record_types(self) -> list[str]:
         record_types = set()
