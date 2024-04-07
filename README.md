@@ -9,12 +9,12 @@ Extract records of a specific type.
 ### Installation
 You can install the library via pip:
 ```python
-pip install health-data-extractor
+pip install apple-health-extractor
 ```
 
 ### Usage
 ```python
-from health_data_extractor import Extractor
+from apple_health_extractor import Extractor
 
 # Initialize the extractor with the path to the XML file
 extractor = Extractor("path/to/health_data.xml")
