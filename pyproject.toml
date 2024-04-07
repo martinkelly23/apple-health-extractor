@@ -1,0 +1,18 @@
+[tool.poetry]
+name = "apple-health-extractor"
+version = "0.1.0"
+description = "This library provides functionality to parse and extract data from the XML exports of Apple Health app, enabling users to analyze and utilize their health data conveniently."
+authors = ["martinkelly23 <martkelly92@gmail.com>"]
+license = "MIT"
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.11"
+pytest = "^8.1.1"
+black = "^24.3.0"
+xmltodict = "^0.13.0"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
