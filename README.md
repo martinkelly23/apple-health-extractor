@@ -14,7 +14,7 @@ pip install apple-health-extractor
 
 ### Usage
 ```python
-from apple_health_extractor import Extractor
+from extractor import Extractor
 
 # Initialize the extractor with the path to the XML file
 extractor = Extractor("path/to/health_data.xml")
