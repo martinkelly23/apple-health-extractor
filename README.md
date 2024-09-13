@@ -32,6 +32,13 @@ record_types = extractor.get_record_types()
 specific_records = extractor.get_records("HKQuantityTypeIdentifierHeartRate")
 ```
 
+# Apple Health Data Extractor
+
+This package provides tools to extract and analyze data from Apple Health XML exports.
+
+## Installation
+
+
 ### Contributing
 Contributions are welcome! Please fork the repository and open a pull request with your improvements.
 
