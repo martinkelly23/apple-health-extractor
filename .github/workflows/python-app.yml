@@ -31,4 +31,4 @@ jobs:
         poetry run black . --check
     - name: Test with pytest
       run: |
-        pytest
+        poetry run pytest
