@@ -15,6 +15,9 @@ packages = [
   { include = "extractor" },
 ]
 
+[tool.poetry.scripts]
+apple-health-extractor = "extractor.cli:main"
+
 [tool.poetry.dependencies]
 python = "^3.8"
 pytest = "^8.1.1"

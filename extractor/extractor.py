@@ -22,25 +22,34 @@ class Extractor:
     def get_json(self):
         return self.health_data
 
-    def save_to_csv(self):
-        csv_output_file = self.file_src.split(DIRECTORY_SEPARATOR)[
-            FILE_NAME_INDEX
-        ].replace("xml", "csv")
-        with open(csv_output_file, "w", newline="") as csvfile:
+    def save_to_csv(self, output_file=None, filter_type=None, filter_source=None):
+        if output_file is None:
+            output_file = self.file_src.split(DIRECTORY_SEPARATOR)[FILE_NAME_INDEX].replace("xml", "csv")
+        
+        with open(output_file, "w", newline="") as csvfile:
             csv_writer = csv.writer(csvfile)
 
             headers = []
-            for record in self.health_data.get(RECORD_ELEMENT, []):
-                for key in record.keys():
-                    if key not in headers:
-                        headers.append(key)
-            csv_writer.writerow(headers)
+            filtered_records = []
 
             for record in self.health_data.get(RECORD_ELEMENT, []):
+                record_obj = Record(**record)
+                if (filter_type is None or record_obj.type == filter_type) and \
+                   (filter_source is None or record_obj.source_name == filter_source):
+                    filtered_records.append(record)
+                    for key in record.keys():
+                        if key not in headers:
+                            headers.append(key)
+
+            csv_writer.writerow(headers)
+
+            for record in filtered_records:
                 row = []
                 for header in headers:
                     row.append(record.get(header, ""))
                 csv_writer.writerow(row)
+
+        print(f"Data saved to {output_file}")
 
     def get_record_types(self) -> list[str]:
         record_types = set()
@@ -60,3 +69,18 @@ class Extractor:
                 records.append(asdict(record))
 
         return records
+    
+
+    def get_distinct_types(self) -> List[str]:
+        types = set()
+        for record_data in self.health_data.get(RECORD_ELEMENT, []):
+            record = Record(**record_data)
+            types.add(record.type)
+        return sorted(list(types))
+
+    def get_distinct_source_names(self) -> List[str]:
+        source_names = set()
+        for record_data in self.health_data.get(RECORD_ELEMENT, []):
+            record = Record(**record_data)
+            source_names.add(record.source_name)
+        return sorted(list(source_names))
